@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, BadgeCheck, ChevronRight, Search, ShieldCheck, Star, Zap } from 'lucide-react'
 import { redirect } from 'next/navigation'
@@ -5,6 +6,8 @@ import { supabaseServer } from '@/lib/supabase-server'
 import { Header, Footer, ProductCard } from '@/components/site'
 import CategoryRail from '@/components/category-rail'
 import HomeSpotlight from '@/components/home-spotlight'
+
+export const metadata: Metadata = { alternates: { canonical: '/' } }
 
 export default async function Home({ searchParams }: { searchParams?: Promise<{ code?: string; next?: string }> }) {
   const params = searchParams ? await searchParams : {}
