@@ -9,11 +9,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     sb.from('products').select('slug,updated_at').eq('published', true),
     sb.from('articles').select('slug,updated_at').eq('published', true),
   ])
+  const now = new Date()
   const staticPages: MetadataRoute.Sitemap = [
-    { url: SITE_URL, changeFrequency: 'daily', priority: 1 },
-    { url: `${SITE_URL}/products`, changeFrequency: 'daily', priority: 0.8 },
-    { url: `${SITE_URL}/guides`, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${SITE_URL}/about`, changeFrequency: 'monthly', priority: 0.5 },
+    { url: SITE_URL, lastModified: now, changeFrequency: 'daily', priority: 1 },
+    { url: `${SITE_URL}/products`, lastModified: now, changeFrequency: 'daily', priority: 0.8 },
+    { url: `${SITE_URL}/categories`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
+    { url: `${SITE_URL}/guides`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${SITE_URL}/about`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${SITE_URL}/contact`, changeFrequency: 'monthly', priority: 0.4 },
     { url: `${SITE_URL}/editorial-policy`, changeFrequency: 'monthly', priority: 0.5 },
     { url: `${SITE_URL}/privacy`, changeFrequency: 'monthly', priority: 0.3 },
